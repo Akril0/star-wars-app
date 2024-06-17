@@ -1,8 +1,9 @@
 'use client'
 
 import {useCallback, useEffect, useState} from "react";
-import {fetchHeroes} from "@/services/api";
-import { useTransition, animated } from '@react-spring/web'
+import {fetchHeroes} from "@/services/heroes";
+import Link from "next/link";
+
 
 const HeroList: React.FC = () => {
     const [heroes, setHeroes] = useState<any[]>([]);
@@ -17,23 +18,18 @@ const HeroList: React.FC = () => {
             console.log(newHeroes);
             setHeroes(prev => [...prev, ...newHeroes.results]);
             setLoading(false);
-        })();
+        })()
     }, [page]);
 
-    const [transitions, api] = useTransition(page, () => ({
-        from: { opacity: 0 },
-        enter: { opacity: 1 },
-        leave: { opacity: 1 },
-    }))
 
     const handleButton = () => {
         setPage(prev => prev + 1);
     }
     return (
         <div className="p-4">
-            <ul className="p-4 grid gap-4 md:grid-cols-5 grid-cols-2">
+            <div className="p-4 grid gap-4 md:grid-cols-5 grid-cols-2">
                 {heroes.map(hero => (
-                    <li key={hero.id}
+                    <Link href={`/${hero.id}`} key={hero.id}
                         className="
                             h-28
                             cursor-pointer
@@ -43,9 +39,9 @@ const HeroList: React.FC = () => {
                             hover:bg-blue-700
                             transition">
                         {hero.name}
-                    </li>
+                    </Link>
                 ))}
-            </ul>
+            </div>
             {!loading && <button className="mx-auto block"
                                  onClick={handleButton}>
                 Ещё

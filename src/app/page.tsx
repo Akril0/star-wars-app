@@ -2,8 +2,6 @@
 import HeroList from "@/components/HeroList";
 
 
-
-
 const Home: React.FC = () => {
     return (
         <div className="container mx-auto p-4">
