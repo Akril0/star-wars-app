@@ -1,8 +1,6 @@
 interface IStarship {
     id: number;
     name: string;
-    model: string;
-    manufacturer: string;
     cost_in_credits: string;
 }
 

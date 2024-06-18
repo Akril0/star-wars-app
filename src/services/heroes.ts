@@ -10,18 +10,6 @@ export const fetchHeroes = async (page: number) => {
 };
 
 export const fetchHeroDetails = async (id: string) => {
-    try {
-        const responseHero = await $api.get<IHero>(`/people/${id}`);
-        const responseFilms = await fetchFilmsArrayById(responseHero.data.films);
-        const responseStarships = await fetchStarshipsById(responseHero.data.starships);
-        const films = responseFilms.results.map(film => ({
-            ...film,
-            starships: film.starships.filter(starship => responseHero.data.starships.includes(starship)).map(starshipId => responseStarships.results.find(starship => starship.id === starshipId)),
-        }))
-        return {...responseHero.data, films: [...films]}
-    } catch (e) {
-        // console.log(e);
-        return {}
-    }
+    const responseHero = await $api.get<IHero>(`/people/${id}`);
+    return responseHero.data;
 };
-``
