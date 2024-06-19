@@ -1,4 +1,3 @@
-'use client'
 import HeroList from "@/components/HeroList";
 
 

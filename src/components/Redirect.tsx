@@ -9,9 +9,7 @@ const Redirect = () => {
     useEffect(() => {
         (async () => router.push('/'))()
     }, [router]);
-    return (<></>
-
-    );
+    return (<></>);
 };
 
 export default Redirect;
